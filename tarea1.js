@@ -7,8 +7,7 @@ document.querySelector("#reiniciar").addEventListener("click", function () {rein
 function agregarInputs(){
     let cantidadPersonas = document.querySelector("#cantidad-personas").value
     for (let i = 0; i < cantidadPersonas; i++) {
-        console.log("se agrega nro " + (i+1))
-        
+        document.querySelector("#inputs").innerHTML += `<input size="9" type="number" placeholder="Persona ${(i+1)}"/>`
     }
 }
 
