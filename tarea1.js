@@ -9,25 +9,27 @@ function agregarInputs(){
     document.querySelector("#cantidad-personas").setAttribute("disabled", "disabled")
     let cantidadPersonas = document.querySelector("#cantidad-personas").value
     for (let i = 0; i < cantidadPersonas; i++) {
-        //document.querySelector("#inputs").innerHTML += `<input size="9" type="number" placeholder="Persona ${(i+1)}"/>`
-        //Esta es la manera que encontré de hacerlo ^, abajo está hecho como el ejemplo de Fabricio
-        const $nodoInput = document.createElement('div');
-        $nodoInput.className = "persona"
-        document.querySelector('#personas').appendChild($nodoInput);
+        document.querySelector("#personas").innerHTML += `<input size="12" type="number" class="persona" placeholder="Persona ${(i+1)}"/><br>`
+        //Esta es la manera que encontré de hacerlo ^, abajo está hecho como el ejemplo de Fabricio, ambas funcionan
 
-        const $label = document.createElement('label');
-        $label.textContent = `Edad persona ${(i+1)} `;
-        const $input = document.createElement('input');
-        $input.type = 'number';
+        // const $nodoInput = document.createElement('div');
+        // $nodoInput.className = "persona"
+        // document.querySelector('#personas').appendChild($nodoInput);
+
+        // const $label = document.createElement('label');
+        // $label.textContent = `Edad persona ${(i+1)} `;
+        // const $input = document.createElement('input');
+        // $input.type = 'number';
       
-        $nodoInput.appendChild($label);
-        $nodoInput.appendChild($input);
+        // $nodoInput.appendChild($label);
+        // $nodoInput.appendChild($input);
       
-        const $nodoIntegrantes = document.querySelector('#personas');
-        $nodoIntegrantes.appendChild($nodoInput);
+        // const $nodoIntegrantes = document.querySelector('#personas');
+        // $nodoIntegrantes.appendChild($nodoInput);
 
     }
 }
+
 
 //reinicia el formulario de edades
 function reiniciarInputs(){
