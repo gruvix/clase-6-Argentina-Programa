@@ -1,5 +1,4 @@
 //Indice de tareas - todas las tareas deben estar declaradas en este array
-//let funcionesBotones = [habilitarTarea, habilitarTarea]
 const $botones = document.querySelectorAll(".botones")
 for(let i = 0; i< $botones.length; i++){
   //agrega la funcion de la tarea de cada boton, de esta manera se pueden agregar X tareas y botones sin tener que inicializar cada uno
