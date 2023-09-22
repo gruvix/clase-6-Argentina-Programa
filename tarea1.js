@@ -1,4 +1,25 @@
 
+document.querySelector("#calcular").addEventListener("click", function () {agregarInputs()})
+document.querySelector("#reiniciar").addEventListener("click", function () {reiniciarInputs()})
+
+
+
+function agregarInputs(){
+    let cantidadPersonas = document.querySelector("#cantidad-personas").value
+    for (let i = 0; i < cantidadPersonas; i++) {
+        console.log("se agrega nro " + (i+1))
+        
+    }
+}
+
+function reiniciarInputs(){
+    document.querySelector("#inputs").innerHTML = ""
+}
+
+
+
+
+
 //funcion con boton de volver a menu de seleccion
 const $botonVolverASelector = document.querySelector("#volver-a-selector")
 $botonVolverASelector.addEventListener("click", volverASelector) 
