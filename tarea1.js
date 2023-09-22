@@ -5,7 +5,8 @@ document.querySelector("#reiniciar").addEventListener("click", function () {rein
 
 
 function agregarInputs(){
-    reiniciarInputs()
+    document.querySelector("#siguiente").setAttribute("disabled", "disabled")
+    document.querySelector("#cantidad-personas").setAttribute("disabled", "disabled")
     let cantidadPersonas = document.querySelector("#cantidad-personas").value
     for (let i = 0; i < cantidadPersonas; i++) {
         //document.querySelector("#inputs").innerHTML += `<input size="9" type="number" placeholder="Persona ${(i+1)}"/>`
@@ -28,12 +29,12 @@ function agregarInputs(){
     }
 }
 
+//reinicia el formulario de edades
 function reiniciarInputs(){
     document.querySelector("#personas").innerHTML = ""
+    document.querySelector("#siguiente").removeAttribute("disabled")
+    document.querySelector("#cantidad-personas").removeAttribute("disabled")
 }
-
-
-
 
 
 //funcion con boton de volver a menu de seleccion
