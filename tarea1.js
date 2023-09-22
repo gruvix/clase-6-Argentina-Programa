@@ -1,18 +1,35 @@
 
-document.querySelector("#calcular").addEventListener("click", function () {agregarInputs()})
+document.querySelector("#siguiente").addEventListener("click", function () {agregarInputs()})
 document.querySelector("#reiniciar").addEventListener("click", function () {reiniciarInputs()})
 
 
 
 function agregarInputs(){
+    reiniciarInputs()
     let cantidadPersonas = document.querySelector("#cantidad-personas").value
     for (let i = 0; i < cantidadPersonas; i++) {
-        document.querySelector("#inputs").innerHTML += `<input size="9" type="number" placeholder="Persona ${(i+1)}"/>`
+        //document.querySelector("#inputs").innerHTML += `<input size="9" type="number" placeholder="Persona ${(i+1)}"/>`
+        //Esta es la manera que encontré de hacerlo ^, abajo está hecho como el ejemplo de Fabricio
+        const $nodoInput = document.createElement('div');
+        $nodoInput.className = "persona"
+        document.querySelector('#personas').appendChild($nodoInput);
+
+        const $label = document.createElement('label');
+        $label.textContent = `Edad persona ${(i+1)} `;
+        const $input = document.createElement('input');
+        $input.type = 'number';
+      
+        $nodoInput.appendChild($label);
+        $nodoInput.appendChild($input);
+      
+        const $nodoIntegrantes = document.querySelector('#personas');
+        $nodoIntegrantes.appendChild($nodoInput);
+
     }
 }
 
 function reiniciarInputs(){
-    document.querySelector("#inputs").innerHTML = ""
+    document.querySelector("#personas").innerHTML = ""
 }
 
 
