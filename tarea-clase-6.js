@@ -1,3 +1,20 @@
+//Indice de tareas - todas las tareas deben estar declaradas en este array
+//let funcionesBotones = [habilitarTarea, habilitarTarea]
+const $botones = document.querySelectorAll(".botones")
+for(let i = 0; i< $botones.length; i++){
+  //agrega la funcion de la tarea de cada boton, de esta manera se pueden agregar X tareas y botones sin tener que inicializar cada uno
+  $botones[i].addEventListener("click", function() {habilitarTarea(i+1)}) 
+  //Agrega la funcion lockMenuInicial a cada boton para evitar que se elija otra tarea
+  $botones[i].addEventListener("click", lockMenuInicial)
+}
+
+//Funcion Habilitar tarea
+function habilitarTarea(numeroBoton){
+  console.log('numero boton == '+numeroBoton)
+  window.location = `tarea${numeroBoton}.html`
+
+}
+
 /*
 TAREA: Empezar preguntando cuánta gente hay en el grupo familiar.
 Crear tantos inputs+labels como gente haya para completar la edad de cada integrante.
