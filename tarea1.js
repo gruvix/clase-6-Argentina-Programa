@@ -1,9 +1,18 @@
 
-document.querySelector("#siguiente").addEventListener("click", function () {agregarInputs()})
+document.querySelector("#siguiente").addEventListener("click", function () {
+    if(document.querySelector("cantidad-personas").value == ""){ return}
+    agregarInputs()
+})
+document.querySelector("#calcular").addEventListener("click", function () {calcularValores()})
 document.querySelector("#reiniciar").addEventListener("click", function () {reiniciarInputs()})
+
 let maximo = 0
 let minimo = 0
 let promedio = 0
+
+function mostrarValores(){
+
+}
 
 function agregarInputs(){
     document.querySelector("#siguiente").setAttribute("disabled", "disabled")
@@ -15,29 +24,39 @@ function agregarInputs(){
 
         //Esta es la manera que encontré de hacerlo ^, abajo está hecho como el ejemplo de Fabricio, ambas funcionan
 
-        // const $nodoInput = document.createElement('div');
-        // $nodoInput.className = "persona"
-        // document.querySelector('#personas').appendChild($nodoInput);
+        /*
+        const $nodoInput = document.createElement('div');
+        $nodoInput.className = "persona"
+        document.querySelector('#personas').appendChild($nodoInput);
 
-        // const $label = document.createElement('label');
-        // $label.textContent = `Edad persona ${(i+1)} `;
-        // const $input = document.createElement('input');
-        // $input.type = 'number';
+        const $label = document.createElement('label');
+        $label.textContent = `Edad persona ${(i+1)} `;
+        const $input = document.createElement('input');
+        $input.type = 'number';
       
-        // $nodoInput.appendChild($label);
-        // $nodoInput.appendChild($input);
+        $nodoInput.appendChild($label);
+        $nodoInput.appendChild($input);
       
-        // const $nodoIntegrantes = document.querySelector('#personas');
-        // $nodoIntegrantes.appendChild($nodoInput);
-
+        const $nodoIntegrantes = document.querySelector('#personas');
+        $nodoIntegrantes.appendChild($nodoInput);
+        */
     }
-    document.querySelector("#personas").innerHTML += `<button type="button" id="calcular">Calcular</button>`
-    document.querySelector("#calcular").addEventListener("click", function () {calcularValores()})
+  document.querySelector('#calcular').className = '';
 
 }
 
 function calcularValores(){
+    let salir = false
     let gente = document.querySelectorAll(".persona")
+    for (let i = 0; i < gente.length; i++) {    
+        if (Number(gente[i].value) == ""){
+            document.querySelector("#campos-incompletos").className = ""
+            salir = true
+        }
+    }
+
+    if(salir){return}
+
     maximo = Number(gente[0].value)
     minimo = Number(gente[0].value)
     let suma = 0
@@ -54,6 +73,9 @@ function calcularValores(){
     document.querySelector("#mayor-edad").innerText = maximo
     document.querySelector("#menor-edad").innerText = minimo
     document.querySelector("#promedio-edad").innerText = promedio
+    document.querySelector("#valores-edad").className = ""
+    document.querySelector("#campos-incompletos").className = "oculto"
+
 
 }
 
@@ -61,6 +83,8 @@ function calcularValores(){
 //reinicia el formulario de edades
 function reiniciarInputs(){
     document.querySelector("#valores-edad").className = "oculto"
+    document.querySelector("#calcular").className = "oculto"
+    document.querySelector("#campos-incompletos").className = "oculto"
     document.querySelector("#personas").innerHTML = ""
     document.querySelector("#siguiente").removeAttribute("disabled")
     document.querySelector("#cantidad-personas").removeAttribute("disabled")
