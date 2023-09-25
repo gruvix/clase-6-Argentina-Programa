@@ -1,5 +1,24 @@
-document.querySelector("#agregar-salario").addEventListener("click", function (){ agregarSalario(indice); indice++})
+document.querySelector("#agregar-salario").addEventListener("click", function (){
+     agregarSalario(indice); 
+     indice++;
+     mostrarBotonCalculo();
+})
+
+document.querySelector("#reiniciar").addEventListener("click", function (){ indice = reiniciar()})
 let indice = 0
+
+function mostrarBotonCalculo(){
+  document.querySelector('#calcular').className = '';
+}
+
+function reiniciar(){
+  document.querySelector('#calcular').className = 'oculto';
+  salarios = document.querySelectorAll(".salario")
+  salarios.forEach(salario => {
+    salario.remove()
+  });  
+  return 0;
+}
 
 function agregarSalario(){
     const $div = document.createElement('div');
