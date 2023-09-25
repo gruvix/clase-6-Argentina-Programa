@@ -79,6 +79,7 @@ function calcularValores(){
     }
 }
 
+//Actualiza los valores en pantalla
 function actualizarValores(datosFuncion){
     document.querySelector("#mayor-edad").innerText = datosFuncion.maximo
     document.querySelector("#menor-edad").innerText = datosFuncion.minimo
@@ -104,8 +105,6 @@ $botonVolverASelector.addEventListener("click", volverASelector)
 function volverASelector(){
     window.location = "index.html"
 }
-
-
 
 
 /*
