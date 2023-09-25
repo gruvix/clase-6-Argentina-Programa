@@ -7,10 +7,25 @@ document.querySelector("#quitar-salario").addEventListener("click", function(){
     if(indice === 0) {return}
     quitarSalario()
     indice--;
+    if(indice === 0) {reiniciar()}
 })
-document.querySelector("#calcular").addEventListener("click", function(){ calcular()})
+document.querySelector("#calcular").addEventListener("click", function(){
+    datos = calcular()
+    imprimirValores()
+})
 document.querySelector("#reiniciar").addEventListener("click", function (){ indice = reiniciar()})
+
 let indice = 0
+let datos = {
+    salarioMaximo: 0,
+    salarioMinimo: 0,
+    promedioAnual: 0,
+    promedioMensual: 0
+}
+
+function imprimirValores(){
+    document.querySelector()
+}
 
 function calcular(){
     let maximo = 0
@@ -37,8 +52,8 @@ function calcular(){
     return  {
         maximo: maximo,
         minimo: minimo,
-        promedioAnual: promedioAnual,
-        promedioMensual: promedioMensual
+        Anual: promedioAnual,
+        Mensual: promedioMensual
     }
 }
 
