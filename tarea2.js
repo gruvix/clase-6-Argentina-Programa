@@ -3,6 +3,11 @@ document.querySelector("#agregar-salario").addEventListener("click", function ()
      indice++;
      mostrarBotonCalculo();
 })
+document.querySelector("#quitar-salario").addEventListener("click", function(){
+    if(indice === 0) {return}
+    quitarSalario()
+    indice--;
+})
 document.querySelector("#calcular").addEventListener("click", function(){ calcular()})
 document.querySelector("#reiniciar").addEventListener("click", function (){ indice = reiniciar()})
 let indice = 0
@@ -48,6 +53,12 @@ function reiniciar(){
     salario.remove()
   });  
   return 0;
+}
+
+function quitarSalario(){
+    salarios = document.querySelectorAll(".salario")
+    salario = salarios[salarios.length-1]
+    salario.remove()
 }
 
 function agregarSalario(){
