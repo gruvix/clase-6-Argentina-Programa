@@ -3,9 +3,39 @@ document.querySelector("#agregar-salario").addEventListener("click", function ()
      indice++;
      mostrarBotonCalculo();
 })
-
+document.querySelector("#calcular").addEventListener("click", function(){ calcular()})
 document.querySelector("#reiniciar").addEventListener("click", function (){ indice = reiniciar()})
 let indice = 0
+
+function calcular(){
+    let maximo = 0
+    let minimo = 0
+    let promedioAnual = 0
+    let promedioMensual = 0
+    let salarios = document.querySelectorAll(".salario")
+
+    maximo = Number(salarios[0].value)
+    minimo = Number(salarios[0].value)
+    let suma = 0
+    salarios.forEach(salario => {
+        valor = Number(salario.value)
+        if(salario.value > maximo){
+            maximo = valor
+        }
+        if(salario.value < minimo){
+            minimo = valor
+        }
+        suma += valor
+    });
+    promedio = suma/salarios.length
+
+    return  {
+        maximo: maximo,
+        minimo: minimo,
+        promedioAnual: promedioAnual,
+        promedioMensual: promedioMensual
+    }
+}
 
 function mostrarBotonCalculo(){
   document.querySelector('#calcular').className = '';
@@ -34,7 +64,6 @@ function agregarSalario(){
     
     const $salarios = document.querySelector('#salarios');
     $salarios.appendChild($div);
-    console.log("salario agregado")
 }
 
 
