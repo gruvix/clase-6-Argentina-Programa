@@ -1,7 +1,7 @@
 
 document.querySelector("#siguiente").addEventListener("click", function () {
-    if(document.querySelector("cantidad-personas").value == ""){ return}
-    agregarInputs()
+    if(document.querySelector("#cantidad-personas").value == ""){ return};
+    agregarInputs();
 })
 document.querySelector("#calcular").addEventListener("click", function () {calcularValores()})
 document.querySelector("#reiniciar").addEventListener("click", function () {reiniciarInputs()})
