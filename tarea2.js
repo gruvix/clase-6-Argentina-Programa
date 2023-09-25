@@ -1,3 +1,27 @@
+document.querySelector("#agregar-salario").addEventListener("click", function (){ agregarSalario(indice); indice++})
+let indice = 0
+
+function agregarSalario(){
+    const $div = document.createElement('div');
+    $div.className = 'salario';
+    
+    const $label = document.createElement('label');
+    $label.textContent = `Salario # ${(indice + 1)} ` ;
+    const $input = document.createElement('input');
+    $input.type = 'number';
+    
+    $div.appendChild($label);
+    $div.appendChild($input);
+    
+    const $salarios = document.querySelector('#salarios');
+    $salarios.appendChild($div);
+    console.log("salario agregado")
+}
+
+
+
+
+
 
 //funcion con boton de volver a menu de seleccion
 const $botonVolverASelector = document.querySelector("#volver-a-selector")
@@ -5,8 +29,6 @@ $botonVolverASelector.addEventListener("click", volverASelector)
 function volverASelector(){
     window.location = "index.html"
 }
-
-
 
 /*
 TAREA:
