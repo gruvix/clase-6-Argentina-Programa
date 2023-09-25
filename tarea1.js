@@ -1,19 +1,29 @@
 
 document.querySelector("#siguiente").addEventListener("click", function () {
-    if(document.querySelector("#cantidad-personas").value == ""){ return};
+    if(Number(document.querySelector("#cantidad-personas").value) < 1){ return};
     agregarInputs();
 })
-document.querySelector("#calcular").addEventListener("click", function () {calcularValores()})
+document.querySelector("#calcular").addEventListener("click", function () {
+    datos = calcularValores()
+    actualizarValores(datos)
+})
 document.querySelector("#reiniciar").addEventListener("click", function () {reiniciarInputs()})
 
-let maximo = 0
-let minimo = 0
-let promedio = 0
+let datos = {
+    maximo: 0,
+    minimo: 0,
+    promedio: 0
+}
+
+// let maximo = 0
+// let minimo = 0
+// let promedio = 0
 
 function mostrarValores(){
 
 }
 
+//Agregar cuadros de entrada de edades del grupo familiar
 function agregarInputs(){
     document.querySelector("#siguiente").setAttribute("disabled", "disabled")
     document.querySelector("#cantidad-personas").setAttribute("disabled", "disabled")
@@ -45,7 +55,12 @@ function agregarInputs(){
 
 }
 
+//Calcula maximo minimo y promedio
 function calcularValores(){
+
+    let maximo = 0
+    let minimo = 0
+    let promedio = 0
     let salir = false
     let gente = document.querySelectorAll(".persona")
     for (let i = 0; i < gente.length; i++) {    
@@ -55,7 +70,11 @@ function calcularValores(){
         }
     }
 
-    if(salir){return}
+    if(salir){return  {
+        maximo,
+        minimo,
+        promedio
+    }}
 
     maximo = Number(gente[0].value)
     minimo = Number(gente[0].value)
@@ -70,15 +89,29 @@ function calcularValores(){
         suma += Number(persona.value)
     });
     promedio = suma/gente.length
-    document.querySelector("#mayor-edad").innerText = maximo
-    document.querySelector("#menor-edad").innerText = minimo
-    document.querySelector("#promedio-edad").innerText = promedio
-    document.querySelector("#valores-edad").className = ""
-    document.querySelector("#campos-incompletos").className = "oculto"
+
+    return  {
+        maximo: maximo,
+        minimo: minimo,
+        promedio: promedio
+    }
+
+    // document.querySelector("#mayor-edad").innerText = maximo
+    // document.querySelector("#menor-edad").innerText = minimo
+    // document.querySelector("#promedio-edad").innerText = promedio
+    // document.querySelector("#valores-edad").className = ""
+    // document.querySelector("#campos-incompletos").className = "oculto"
 
 
 }
 
+function actualizarValores(datosFuncion){
+    document.querySelector("#mayor-edad").innerText = datosFuncion.maximo
+    document.querySelector("#menor-edad").innerText = datosFuncion.minimo
+    document.querySelector("#promedio-edad").innerText = datosFuncion.promedio
+    document.querySelector("#valores-edad").className = ""
+    document.querySelector("#campos-incompletos").className = "oculto"
+}
 
 //reinicia el formulario de edades
 function reiniciarInputs(){
