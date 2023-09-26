@@ -1,10 +1,10 @@
 document.querySelector("#agregar-salario").addEventListener("click", function (){
      agregarSalario(indice); 
+     if(indice == 0) {habilitarBotonQuitarSalario()};
      indice++;
      mostrarBotonCalculo();
 })
 document.querySelector("#quitar-salario").addEventListener("click", function(){
-    if(indice === 0) {return}
     quitarSalario()
     indice--;
     if(indice === 0) {reiniciar()}
@@ -24,7 +24,11 @@ let datos = {
 }
 
 function imprimirValores(){
-    document.querySelector()
+    document.querySelector("")
+}
+
+function habilitarBotonQuitarSalario(){
+    document.querySelector("#quitar-salario").removeAttribute("disabled")
 }
 
 function calcular(){
@@ -62,12 +66,13 @@ function mostrarBotonCalculo(){
 }
 
 function reiniciar(){
-  document.querySelector('#calcular').className = 'oculto';
-  salarios = document.querySelectorAll(".salario")
-  salarios.forEach(salario => {
-    salario.remove()
-  });  
-  return 0;
+    document.querySelector("#quitar-salario").setAttribute("disabled", "disabled")
+    document.querySelector('#calcular').className = 'oculto';
+    salarios = document.querySelectorAll(".salario")
+    salarios.forEach(salario => {
+        salario.remove()
+    });  
+    return 0;
 }
 
 function quitarSalario(){
