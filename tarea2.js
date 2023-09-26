@@ -2,10 +2,12 @@ document.querySelector("#agregar-salario").addEventListener("click", function ()
      agregarSalario(indice); 
      if(indice == 0) {habilitarBotonQuitarSalario()};
      indice++;
-     mostrarBotonCalculo();
+    ocultarValores();
+    mostrarBotonCalculo();
 })
 document.querySelector("#quitar-salario").addEventListener("click", function(){
-    quitarSalario()
+    quitarSalario();
+    ocultarValores();
     indice--;
     if(indice === 0) {reiniciar()}
 })
@@ -17,18 +19,26 @@ document.querySelector("#reiniciar").addEventListener("click", function (){ indi
 
 let indice = 0
 let datos = {
+    cantidad: 0,
     salarioMaximo: 0,
     salarioMinimo: 0,
     promedioAnual: 0,
     promedioMensual: 0
 }
 
+//oculta los valores
+function ocultarValores(){
+    document.querySelector("#valores-salarios").className = "oculto"
+}
+
+//actualiza los valores y los muestra
 function imprimirValores(datosSalarios){
-    document.querySelector("#valores-salarios").className = ""
+    document.querySelector("#cantidad").textContent = `${datosSalarios.cantidad}`
     document.querySelector("#mayor-salario").textContent = `$${datosSalarios.salarioMaximo}`
     document.querySelector("#menor-salario").textContent = `$${datosSalarios.salarioMinimo}`
     document.querySelector("#promedio-anual").textContent = `$${datosSalarios.promedioAnual}`
     document.querySelector("#promedio-mensual").textContent = `$${datosSalarios.promedioMensual}`
+    document.querySelector("#valores-salarios").className = ""
 
 }
 
@@ -36,11 +46,13 @@ function habilitarBotonQuitarSalario(){
     document.querySelector("#quitar-salario").removeAttribute("disabled")
 }
 
+//Calcula maximo, minimo y promedios
 function calcular(){
     let maximo = 0
     let minimo = 0
     let promedioAnual = 0
     let promedioMensual = 0
+    let contador = 0
     let salarios = document.querySelectorAll(".salario input")
 
     maximo = Number(salarios[0].value)
@@ -49,6 +61,7 @@ function calcular(){
 
     salarios.forEach(salario => {
         valor = Number(salario.value)
+        //evita las operaciones si el input está vacío
         if(valor == "") {
             return
         }
@@ -58,18 +71,28 @@ function calcular(){
         if(valor < minimo){
             minimo = valor
         }
-        console.log(valor)
+        contador++
         suma += valor
     });
-
-    promedioAnual = suma/salarios.length
+    //retorna 0s si todos los inputs están vacíos
+    if (contador === 0) {
+        return  {
+            cantidad: 0,
+            salarioMaximo: 0,
+            salarioMinimo: 0,
+            promedioAnual: 0,
+            promedioMensual: 0
+        }
+    }
+    promedioAnual = suma/contador
     promedioMensual = promedioAnual/12
 
     return  {
+        cantidad: contador,
         salarioMaximo: maximo,
         salarioMinimo: minimo,
-        promedioAnual: promedioAnual,
-        promedioMensual: promedioMensual
+        promedioAnual: promedioAnual.toFixed(2),
+        promedioMensual: promedioMensual.toFixed(2)
     }
 }
 
@@ -79,6 +102,7 @@ function mostrarBotonCalculo(){
 
 function reiniciar(){
     document.querySelector("#quitar-salario").setAttribute("disabled", "disabled")
+    ocultarValores()
     document.querySelector('#calcular').className = 'oculto';
     salarios = document.querySelectorAll(".salario")
     salarios.forEach(salario => {
