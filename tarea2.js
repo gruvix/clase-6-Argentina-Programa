@@ -11,7 +11,7 @@ document.querySelector("#quitar-salario").addEventListener("click", function(){
 })
 document.querySelector("#calcular").addEventListener("click", function(){
     datos = calcular()
-    imprimirValores()
+    imprimirValores(datos)
 })
 document.querySelector("#reiniciar").addEventListener("click", function (){ indice = reiniciar()})
 
@@ -23,8 +23,13 @@ let datos = {
     promedioMensual: 0
 }
 
-function imprimirValores(){
-    document.querySelector("")
+function imprimirValores(datosSalarios){
+    document.querySelector("#valores-salarios").className = ""
+    document.querySelector("#mayor-salario").textContent = `$${datosSalarios.salarioMaximo}`
+    document.querySelector("#menor-salario").textContent = `$${datosSalarios.salarioMinimo}`
+    document.querySelector("#promedio-anual").textContent = `$${datosSalarios.promedioAnual}`
+    document.querySelector("#promedio-mensual").textContent = `$${datosSalarios.promedioMensual}`
+
 }
 
 function habilitarBotonQuitarSalario(){
@@ -36,28 +41,35 @@ function calcular(){
     let minimo = 0
     let promedioAnual = 0
     let promedioMensual = 0
-    let salarios = document.querySelectorAll(".salario")
+    let salarios = document.querySelectorAll(".salario input")
 
     maximo = Number(salarios[0].value)
     minimo = Number(salarios[0].value)
     let suma = 0
+
     salarios.forEach(salario => {
         valor = Number(salario.value)
-        if(salario.value > maximo){
+        if(valor == "") {
+            return
+        }
+        if(valor > maximo){
             maximo = valor
         }
-        if(salario.value < minimo){
+        if(valor < minimo){
             minimo = valor
         }
+        console.log(valor)
         suma += valor
     });
-    promedio = suma/salarios.length
+
+    promedioAnual = suma/salarios.length
+    promedioMensual = promedioAnual/12
 
     return  {
-        maximo: maximo,
-        minimo: minimo,
-        Anual: promedioAnual,
-        Mensual: promedioMensual
+        salarioMaximo: maximo,
+        salarioMinimo: minimo,
+        promedioAnual: promedioAnual,
+        promedioMensual: promedioMensual
     }
 }
 
