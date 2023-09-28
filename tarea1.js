@@ -19,10 +19,6 @@ let datos = {
     promedio: 0
 }
 
-function mostrarValores(){
-
-}
-
 //Agregar cuadros de entrada de edades del grupo familiar
 function agregarInputs(){
     document.querySelector("#siguiente").setAttribute("disabled", "disabled")
