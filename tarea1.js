@@ -1,6 +1,6 @@
 
 document.querySelector("#siguiente").addEventListener("click", function () {
-    if(Number(document.querySelector("#cantidad-personas").value) < 1){ return};
+    if(validarInputInicial(Number(document.querySelector("#cantidad-personas").value)) != ""){ return};
     agregarInputs();
 })
 
@@ -17,6 +17,16 @@ let datos = {
     maximo: 0,
     minimo: 0,
     promedio: 0
+}
+
+function validarInputInicial(input){
+    if(input < 1){
+        return "el valor debe ser igual o mayor a 1"
+    }
+    if(input >= 50){
+        return "el valor debe ser menor de 100"
+    }
+    return ""
 }
 
 //Agregar cuadros de entrada de edades del grupo familiar
