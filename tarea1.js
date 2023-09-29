@@ -1,6 +1,10 @@
 
 document.querySelector("#siguiente").addEventListener("click", function () {
-    if(validarInputInicial(Number(document.querySelector("#cantidad-personas").value)) != ""){ return};
+    let resultado = validarInputInicial(Number(document.querySelector("#cantidad-personas").value))
+    if(resultado != ""){
+        alert(resultado)
+        return
+    }
     agregarInputs();
 })
 
