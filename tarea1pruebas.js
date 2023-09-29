@@ -6,6 +6,6 @@ document.querySelector("#siguiente").addEventListener("click", function () {
 })
 
 document.querySelector("#calcular").addEventListener("click", function () {
-    let vectorPruebaDecimal = [0, 2.5]
-    console.assert(validarInputsEdades(vectorPrueba0), "validar input edad no validó que el numero sea mayor a 0 o que no tenga decimales")
+    let vectorPrueba = [0, 2.5]
+    console.assert(!validarInputsEdades(vectorPrueba), "validar input edad no validó que el numero sea mayor a 0 o que no tenga decimales")
 })
