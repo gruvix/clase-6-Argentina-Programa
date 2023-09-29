@@ -1,6 +1,6 @@
 
 document.querySelector("#siguiente").addEventListener("click", function () {
-    let resultado = validarInputInicial(Number(document.querySelector("#cantidad-personas").value))
+    let resultado = validarInputCantidad(Number(document.querySelector("#cantidad-personas").value))
     if(resultado != ""){
         alert(resultado)
         return
@@ -9,7 +9,7 @@ document.querySelector("#siguiente").addEventListener("click", function () {
 })
 
 document.querySelector("#calcular").addEventListener("click", function () {
-    if(validarInputs()) {
+    if(validarInputsEdades(document.querySelectorAll(".persona"))) {
         datos = calcularValores()
         actualizarValores(datos)
 }
@@ -23,12 +23,15 @@ let datos = {
     promedio: 0
 }
 
-function validarInputInicial(input){
+function validarInputCantidad(input){
     if(input < 1){
         return "el valor debe ser igual o mayor a 1"
     }
     if(input >= 50){
         return "el valor debe ser menor de 100"
+    }
+    if(input % 1 != 0){
+        return "el valor no debe tener decimales"
     }
     return ""
 }
@@ -46,17 +49,19 @@ function agregarInputs(){
 
 }
 
-function validarInputs(){
-    let gente = document.querySelectorAll(".persona")
+function validarInputsEdades(gente){
+    let todoOk = true
     for (let i = 0; i < gente.length; i++) {    
         if (Number(gente[i].value) == ""){
             document.querySelector("#campos-incompletos").className = ""
-            console.log("inputs vacios")
-            return false
+            todoOk = false
+        }
+        if (Number(gente[i].value) % 1 != 0){
+            document.querySelector("#campos-decimales").className = ""
+            todoOk = false
         }
     }
-            console.log("inputs llenos")
-            return true
+    return todoOk
 }
 
 //Calcula maximo minimo y promedio
@@ -89,23 +94,28 @@ function calcularValores(){
     }
 }
 
+function ocultarErroresEdades(){
+    document.querySelector("#campos-incompletos").className = "oculto"
+    document.querySelector("#campos-decimales").className = "oculto"
+}
+
 //Actualiza los valores en pantalla
 function actualizarValores(datosFuncion){
     document.querySelector("#mayor-edad").innerText = datosFuncion.maximo
     document.querySelector("#menor-edad").innerText = datosFuncion.minimo
     document.querySelector("#promedio-edad").innerText = datosFuncion.promedio
     document.querySelector("#valores-edad").className = ""
-    document.querySelector("#campos-incompletos").className = "oculto"
+    ocultarErroresEdades()
 }
 
 //reinicia el formulario de edades
 function reiniciarInputs(){
     document.querySelector("#valores-edad").className = "oculto"
     document.querySelector("#calcular").className = "oculto"
-    document.querySelector("#campos-incompletos").className = "oculto"
     document.querySelector("#personas").innerHTML = ""
     document.querySelector("#siguiente").removeAttribute("disabled")
     document.querySelector("#cantidad-personas").removeAttribute("disabled")
+    ocultarErroresEdades()
 }
 
 
