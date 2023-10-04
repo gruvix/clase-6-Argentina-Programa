@@ -27,11 +27,14 @@ function validarInputCantidad(input){
     if(input < 1){
         return "el valor debe ser igual o mayor a 1"
     }
-    if(input >= 50){
+    if(input >= 100){
         return "el valor debe ser menor de 100"
     }
     if(input % 1 != 0){
         return "el valor no debe tener decimales"
+    }
+    if(input == ""){
+        return "el valor no puede estar vacío" 
     }
     return ""
 }
